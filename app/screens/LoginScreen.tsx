@@ -9,13 +9,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { useNavigation } from "expo-router";
 
-type SignUpScreenNavigationProp = {
-  navigate: (value: string) => void;
-};
-const SignupScreen = () => {
-  const router = useNavigation<SignUpScreenNavigationProp>();
+const LoginScreen = () => {
   return (
     <SafeAreaView
       style={{
@@ -24,24 +19,15 @@ const SignupScreen = () => {
       }}
       className='flex-1 bg-blue-600'
     >
-      <View className='w-full h-[30%]'>
+      <View className='w-full h-[40%]'>
         <Image
           source={require("../../assets/images/signup.png")}
           style={{ width: 270, height: 270 }}
           className='bg-contain size-auto mx-auto'
         />
       </View>
-      <View className='bg-white h-[70%] rounded-t-[50px]'>
+      <View className='bg-white h-[60%] rounded-t-[50px]'>
         <View className='p-4 my-5 flex flex-col gap-y-4'>
-          <View>
-            <Text className='text-gray-700 mb-2'>Name</Text>
-            <TextInput
-              keyboardType='default'
-              placeholder='Enter your name'
-              className='bg-gray-100 text-gray-700 rounded-2xl p-4'
-              id='name'
-            />
-          </View>
           <View>
             <Text className='text-gray-700 mb-2'>Email Address</Text>
             <TextInput
@@ -65,11 +51,8 @@ const SignupScreen = () => {
             <Text className='text-end text-gray-600'>Forget Password?</Text>
           </View>
           <View className='mt-4'>
-            <TouchableOpacity
-              onPress={() => router.navigate("Login")}
-              className='bg-yellow-400 p-4 rounded-lg'
-            >
-              <Text className='text-center text-xl font-bold'>Register</Text>
+            <TouchableOpacity className='bg-yellow-400 p-4 rounded-lg'>
+              <Text className='text-center text-xl font-bold'>Login</Text>
             </TouchableOpacity>
           </View>
           <Text className='text-center'>Or</Text>
@@ -96,4 +79,4 @@ const SignupScreen = () => {
   );
 };
 
-export default SignupScreen;
+export default LoginScreen;

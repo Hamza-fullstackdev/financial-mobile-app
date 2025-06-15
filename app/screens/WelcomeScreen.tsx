@@ -1,4 +1,3 @@
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "expo-router";
 import React from "react";
 import {
@@ -11,15 +10,9 @@ import {
   View,
 } from "react-native";
 
-type RootStackParamList = {
-  Welcome: undefined;
-  SignUp: undefined;
-  Starter: undefined;
+type SignUpScreenNavigationProp = {
+  navigate: (value: string) => void;
 };
-type SignUpScreenNavigationProp = NativeStackNavigationProp<
-  RootStackParamList,
-  "SignUp"
->;
 const WelcomeScreen = () => {
   const router = useNavigation<SignUpScreenNavigationProp>();
   return (

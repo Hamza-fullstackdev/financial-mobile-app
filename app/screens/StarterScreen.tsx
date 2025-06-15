@@ -1,4 +1,3 @@
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "expo-router";
 import React, { useEffect } from "react";
 import {
@@ -10,18 +9,12 @@ import {
   View,
 } from "react-native";
 
-type RootStackParamList = {
-  Welcome: undefined;
-  SignUp: undefined;
-  Starter: undefined;
+type StarterScreenNavigationProp = {
+  navigate: (value: string) => void;
 };
-type StarterlcomeScreenNavigationProp = NativeStackNavigationProp<
-  RootStackParamList,
-  "Starter"
->;
 
 const StarterScreen = () => {
-  const navigation = useNavigation<StarterlcomeScreenNavigationProp>();
+  const navigation = useNavigation<StarterScreenNavigationProp>();
   useEffect(() => {
     setTimeout(() => {
       navigation.navigate("Welcome");
