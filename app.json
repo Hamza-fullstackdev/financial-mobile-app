@@ -4,6 +4,7 @@
     "slug": "finance-tracking-app",
     "version": "1.0.0",
     "orientation": "portrait",
+    "assets": ["./assets/fonts"],
     "icon": "./assets/images/icon.png",
     "scheme": "financetrackingapp",
     "userInterfaceStyle": "automatic",
