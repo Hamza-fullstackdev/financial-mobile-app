@@ -4,7 +4,9 @@
     "slug": "finance-tracking-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "assets": ["./assets/fonts"],
+    "assets": [
+      "./assets/fonts"
+    ],
     "icon": "./assets/images/icon.png",
     "scheme": "financetrackingapp",
     "userInterfaceStyle": "automatic",
@@ -17,7 +19,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.sigma_boy.financetrackingapp"
     },
     "web": {
       "bundler": "metro",
@@ -38,6 +41,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "cb6f6cd5-e050-4501-8ec7-bc44bf0b373a"
+      }
     }
   }
 }

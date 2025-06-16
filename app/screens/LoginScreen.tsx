@@ -1,5 +1,8 @@
-import React from "react";
+import { loginUser } from "@/lib/features/user/UserSlice";
+import { useNavigation } from "expo-router";
+import React, { useState } from "react";
 import {
+  Alert,
   Image,
   Platform,
   SafeAreaView,
@@ -9,8 +12,48 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useDispatch } from "react-redux";
 
+type LoginNavigationProp = {
+  navigate: (value: string) => void;
+};
 const LoginScreen = () => {
+  const [formData, setFormData] = useState<any>({});
+  const router = useNavigation<LoginNavigationProp>();
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const handleChange = (key: string, value: string) => {
+    setFormData((prev: any) => ({
+      ...prev,
+      [key]: value,
+    }));
+  };
+
+  const handleFormData = async () => {
+    try {
+      setLoading(true);
+      const res = await fetch(
+        "https://ai-powered-financial-and-investment-advisory-system.vercel.app/api/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+      const data = await res.json();
+      setLoading(false);
+      if (res.ok) {
+        dispatch(loginUser(data.user));
+        router.navigate("Dashboard");
+      } else {
+        Alert.alert("Error", data.message);
+      }
+    } catch (error) {
+      Alert.alert("Error", "Something went wrong");
+    }
+  };
   return (
     <SafeAreaView
       style={{
@@ -34,7 +77,7 @@ const LoginScreen = () => {
               keyboardType='email-address'
               placeholder='Enter email address'
               className='bg-gray-100 text-gray-700 rounded-2xl p-4'
-              id='email'
+              onChangeText={(value) => handleChange("email", value)}
             />
           </View>
           <View>
@@ -44,14 +87,18 @@ const LoginScreen = () => {
               secureTextEntry
               placeholder='Enter Password'
               className='bg-gray-100 text-gray-700 rounded-2xl p-4'
-              id='password'
+              onChangeText={(value) => handleChange("password", value)}
             />
           </View>
           <View className='flex items-end'>
             <Text className='text-end text-gray-600'>Forget Password?</Text>
           </View>
           <View className='mt-4'>
-            <TouchableOpacity className='bg-yellow-400 p-4 rounded-lg'>
+            <TouchableOpacity
+              disabled={loading}
+              onPress={handleFormData}
+              className='bg-yellow-400 p-4 rounded-lg'
+            >
               <Text className='text-center text-xl font-bold'>Login</Text>
             </TouchableOpacity>
           </View>

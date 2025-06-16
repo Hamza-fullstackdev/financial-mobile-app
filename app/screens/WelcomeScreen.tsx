@@ -1,5 +1,6 @@
+import { RootState } from "@/lib/store";
 import { useNavigation } from "expo-router";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Image,
   Platform,
@@ -9,12 +10,18 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useSelector } from "react-redux";
 
 type SignUpScreenNavigationProp = {
   navigate: (value: string) => void;
 };
 const WelcomeScreen = () => {
+  const user = useSelector((state: RootState) => state?.user);
   const router = useNavigation<SignUpScreenNavigationProp>();
+
+  useEffect(() => {
+    if (user?.isAuthenticated) router.navigate("Dashboard");
+  }, [user]);
   return (
     <SafeAreaView
       style={{
@@ -47,7 +54,7 @@ const WelcomeScreen = () => {
             <Text className='text-center text-white'>
               Already have an account?
             </Text>
-            <TouchableOpacity onPress={() => router.navigate("SignUp")}>
+            <TouchableOpacity onPress={() => router.navigate("Login")}>
               <Text className='text-yellow-400 font-semibold'>Log In</Text>
             </TouchableOpacity>
           </View>
