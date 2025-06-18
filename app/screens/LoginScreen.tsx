@@ -103,22 +103,17 @@ const LoginScreen = () => {
             </TouchableOpacity>
           </View>
           <Text className='text-center'>Or</Text>
-          <View className=' mt-3 flex flex-row items-center justify-between'>
-            <Image
-              source={require("../../assets/images/google.png")}
-              className='bg-contain w-10 h-10 mx-auto'
-              alt='Google'
-            />
-            <Image
-              source={require("../../assets/images/apple.png")}
-              className='bg-contain w-10 h-10 mx-auto'
-              alt='Apple'
-            />
-            <Image
-              source={require("../../assets/images/facebook.png")}
-              alt='Facebook'
-              className='bg-contain w-12 h-12 mx-auto'
-            />
+          <View className='w-full'>
+            <TouchableOpacity className='bg-white border border-gray-300 p-2 rounded-full flex items-center justify-center'>
+              <View className='flex flex-row items-center gap-x-2'>
+                <Image
+                  source={require("../../assets/images/google.png")}
+                  className='bg-contain w-8 h-8 mx-auto'
+                  alt='Google'
+                />
+                <Text>Login with Google</Text>
+              </View>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
